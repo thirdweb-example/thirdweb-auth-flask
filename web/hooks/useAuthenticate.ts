@@ -1,7 +1,7 @@
 import { useSDK } from "@thirdweb-dev/react";
 
 export default function useAuthenticate() {
-  const domain = "thirdweb.com";
+  const domain = "example.com";
   const sdk = useSDK();
 
   async function login() {
@@ -12,25 +12,25 @@ export default function useAuthenticate() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ payload }),
-    })
+    });
   }
 
   async function authenticate() {
     const res = await fetch("/api/authenticate", {
-      method: "POST"
-    })
-    return res
+      method: "POST",
+    });
+    return res;
   }
 
   async function logout() {
     await fetch("/api/logout", {
       method: "POST",
-    })
+    });
   }
 
-  return { 
+  return {
     login,
     authenticate,
-    logout
-  }
+    logout,
+  };
 }
